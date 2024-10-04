@@ -3,39 +3,39 @@
   become: yes
   tasks:
 
-    # Update the package cache
-    - name: "Update Apt Cache"
-      apt:
-        update_cache: yes
-      tags: update_cache
+  # Update the package cache
+  - name: "Update Apt Cache"
+    apt:
+      update_cache: yes
+    tags: update_cache
 
-    # Upgrade all installed packages to the latest version
-    - name: "Upgrade all packages"
-      apt:
-        upgrade: dist
-      tags: upgrade
+  # Upgrade all installed packages to the latest version
+  - name: "Upgrade all packages"
+    apt:
+      upgrade: dist
+    tags: upgrade
 
-    # Install common and essential packages
-    - name: "Install Common Packages"
-      apt:
-        name:
-          - vim
-          - curl
-          - git
-          - htop
-          - unzip
-          - wget
-          - build-essential
-        state: latest
-      tags: common
+  # Install common and essential packages
+  - name: "Install Common Packages"
+    apt:
+      name:
+        - vim
+        - curl
+        - git
+        - htop
+        - unzip
+        - wget
+        - build-essential
+      state: latest
+    tags: common
 
-    # Remove obsolete packages and clean the system
-    - name: "Autoremove unused packages"
-      apt:
-        autoremove: yes
-      tags: autoremove
+  # Remove obsolete packages and clean the system
+  - name: "Autoremove unused packages"
+    apt:
+      autoremove: yes
+    tags: autoremove
 
-    - name: "Clean up APT cache"
-      apt:
+  - name: "Clean up APT cache"
+    apt:
         autoclean: yes
       tags: clean
