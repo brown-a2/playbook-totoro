@@ -1,0 +1,40 @@
+---
+- name: Install Docker and Vim on Raspberry Pi
+  hosts: raspberrypi
+  become: yes  # Use 'become' to run tasks with sudo privileges
+
+  tasks:
+    - name: "Update Apt Cache"
+      apt: 
+        update_cache: yes
+      tags: installation
+
+    - name: "Upgrade all packages"
+      apt:
+        upgrade: dist
+      tags: installation
+
+    - name: "Install Common Packages"
+      apt:
+        name: 
+          - runc
+          - python-pip
+          - docker.io
+          - python3-venv
+          - docker-compose
+          - vim  # Include Vim in the package list
+        state: latest
+      tags: installation, packages
+
+    - name: "Install Python Docker Module"
+      pip:
+        name: 
+          - docker
+      tags: python
+
+    - name: "Start and enable Docker service"
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
+      tags: docker
