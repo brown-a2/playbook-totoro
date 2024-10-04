@@ -15,7 +15,8 @@
 - name: "Install Common Packages"
   apt:
     name:
-      - vim
+      - neovim
+      - vim-common
       - curl
       - git
       - htop
