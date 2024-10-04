@@ -1,6 +1,5 @@
+---
 - hosts: raspberrypi
   become: yes
   roles:
     - common
-  tags:
-    raspberrypi
