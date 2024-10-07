@@ -1,4 +1,3 @@
----
 # Update the package cache
 - name: "Update Apt Cache"
   apt:
@@ -11,8 +10,8 @@
     upgrade: dist
   tags: upgrade
 
-# Install common and essential packages
-- name: "Install Common Packages"
+# Install common and required system packages
+- name: "Install Common and Required Packages"
   apt:
     name:
       - neovim
@@ -23,8 +22,21 @@
       - unzip
       - wget
       - build-essential
+      - apt-transport-https
+      - ca-certificates
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
     state: latest
   tags: common
+
+# Ensure aptitude is installed
+- name: "Install aptitude"
+  apt:
+    name: aptitude
+    state: latest
+  tags: aptitude
 
 # Remove obsolete packages and clean the system
 - name: "Autoremove unused packages"
