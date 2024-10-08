@@ -1,2 +1,2 @@
 update:
-	ansible-playbook playbooks/run.yml
+	ansible-playbook playbooks/playbook.yml
